@@ -67,7 +67,8 @@ RUN chmod +x /root/entrypoint.sh
 # - source /opt/ros/...: Loads standard ROS commands (ros2 run, etc.)
 # - if [ -f .../setup.bash ]: Loads YOUR custom code so you can run your nodes.
 # - alias: Shortcut commands we created to save time.
-RUN echo 'if [ -f "/opt/ros/${ROS_DISTRO}/setup.bash" ]; then source "/opt/ros/${ROS_DISTRO}/setup.bash"; fi' >> ~/.bashrc && \
+RUN sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/g' ~/.bashrc && \
+                echo 'if [ -f "/opt/ros/${ROS_DISTRO}/setup.bash" ]; then source "/opt/ros/${ROS_DISTRO}/setup.bash"; fi' >> ~/.bashrc && \
                 echo 'if [ -f /root/ros2_ws/install/setup.bash ]; then source /root/ros2_ws/install/setup.bash; fi' >> ~/.bashrc  &&  \
                 echo "alias build='source /root/build.sh'" >> ~/.bashrc && \
                 echo "alias clean='source /root/build.sh clean'" >> ~/.bashrc && \

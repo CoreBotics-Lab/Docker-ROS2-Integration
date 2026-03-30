@@ -10,8 +10,8 @@ services:
     container_name: ${ROS_DISTRO:-jazzy}_dev
     network_mode: host
     ipc: host
-    ports:
-      - "8765:8765"
+    # ports:
+    #   - "8765:8765"
       
     deploy:
       resources:
