@@ -10,13 +10,15 @@ safe_exit() {
 }
 
 # 1. AUTO-DETECTION LOGIC
-if command -v code-insiders &> /dev/null; then
+if command -v antigravity &> /dev/null; then
+    DETECTED_BINARY="antigravity"
+elif command -v code-insiders &> /dev/null; then
     DETECTED_BINARY="code-insiders"
 elif command -v code &> /dev/null; then
     DETECTED_BINARY="code"
 else
-    echo "⚠️ Error: Neither 'code' nor 'code-insiders' was found in your PATH."
-    echo "Make sure you are running this inside a VS Code terminal."
+    echo "⚠️ Error: Neither 'antigravity', 'code' nor 'code-insiders' was found in your PATH."
+    echo "Make sure you are running this inside a supported environment."
     safe_exit 1
 fi
 
