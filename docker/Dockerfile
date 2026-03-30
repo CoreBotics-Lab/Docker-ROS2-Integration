@@ -27,6 +27,7 @@ SHELL ["/bin/bash", "-c"]
 # rosdep: Tool for installing system dependencies from a package.xml.
 # build-essential & cmake: Standard C++ compiler tools.
 RUN apt-get update && apt-get install -y \
+                wget \
                 terminator \
                 fonts-noto-color-emoji  \
                 python3-colcon-common-extensions \

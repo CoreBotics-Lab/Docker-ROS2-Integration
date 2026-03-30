@@ -38,6 +38,7 @@ EXTENSIONS=(
     # "morningfrog.urdf-visualizer"
     "Ranch-Hand-Robotics.rde-pack"
     "ms-vscode.cpptools-extension-pack"
+    # "actboy168.tasks"
 )
 
 # 4. INSTALLATION
