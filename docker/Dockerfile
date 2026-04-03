@@ -28,6 +28,7 @@ SHELL ["/bin/bash", "-c"]
 # build-essential & cmake: Standard C++ compiler tools.
 RUN apt-get update && apt-get install -y \
                 wget \
+                gdb \
                 terminator \
                 fonts-noto-color-emoji  \
                 python3-colcon-common-extensions \
