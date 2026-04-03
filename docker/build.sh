@@ -40,14 +40,14 @@ elif [ "$1" == "debug" ]; then
     
     if [ -z "$1" ]; then
         echo "🐞 [DEBUG ALL] Building entire workspace with Debug symbols..."
-        colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug
+        colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
     else
         echo "🐞 [DEBUG PARTIAL] Building package [$1] with Debug symbols..."
         PKG_NAME=$1
         shift
         # We use --packages-above to ensure dependencies are handled, 
         # or --packages-select for just that one.
-        colcon build --packages-select "$PKG_NAME" --cmake-args -DCMAKE_BUILD_TYPE=Debug "$@"
+        colcon build --packages-select "$PKG_NAME" --cmake-args -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON "$@"
     fi
     echo "✅ Debug build complete."
 
@@ -55,17 +55,17 @@ elif [ "$1" == "debug" ]; then
 elif [ "$1" == "all" ]; then
     echo "🏗️  [FORCE ALL] Rebuilding every package (Release)..."
     shift
-    colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release "$@"
+    colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON "$@"
 
 elif [ -n "$1" ] && [[ "$1" != --* ]]; then
     echo "📦 [PARTIAL BUILD] Targeting package: $1..."
     PKG_NAME=$1
     shift
-    colcon build --packages-select "$PKG_NAME" --symlink-install "$@"
+    colcon build --packages-select "$PKG_NAME" --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON "$@"
 
 else
     echo "⚡ [INCREMENTAL BUILD] Building changes..."
-    colcon build --symlink-install "$@"
+    colcon build --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON "$@"
 fi
 
 # 5. Re-source the workspace
