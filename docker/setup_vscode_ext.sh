@@ -34,13 +34,12 @@ echo "-----------------------------------------------"
 
 # 3. YOUR BUNDLE
 EXTENSIONS=(
-    # "ms-vscode.cpptools"
-    # "ms-vscode.cmake-tools"
     "ms-python.python"
     # "morningfrog.urdf-visualizer"
     "Ranch-Hand-Robotics.rde-pack"
     "ms-vscode.cpptools-extension-pack"
-    # "actboy168.tasks"
+    "actboy168.tasks"
+    "llvm-vs-code-extensions.vscode-clangd"
 )
 
 # 4. INSTALLATION
