@@ -1,0 +1,33 @@
+#!/bin/bash
+# ---------------------------------------------------------
+# ROS 2 Jazzy - Dev Environment Launcher
+# ---------------------------------------------------------
+
+# --- CONFIGURATION ---
+# Choose your IDE: "antigravity", "code", or "code-insiders"
+IDE_BINARY="antigravity"
+# ---------------------
+
+# 1. Get the directory of this script
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$SCRIPT_DIR"
+
+# 2. Start Docker
+echo "🌐 Enabling X11 access..."
+xhost +local:docker > /dev/null
+
+echo "🚀 Starting Container..."
+cd docker && docker compose up -d
+cd ..
+
+# 3. Launch the IDE
+echo "🛸 Opening $IDE_BINARY (Modern Remote)..."
+# To find a new hex code for a different container name, run:
+# python3 -c "print('{\"containerId\":\"YOUR_CONTAINER_NAME\"}'.encode().hex())"
+# python3 -c "print('{\"containerId\":\"jazzy_dev\"}'.encode().hex())"
+# 7b22636f6e7461696e65724964223a226a617a7a795f646576227d
+$IDE_BINARY -n --remote dev-container+7b22636f6e7461696e65724964223a226a617a7a795f646576227d /root/ros2_ws &
+
+echo "✅ Environment Launched."
+sleep 3
+exit 0
