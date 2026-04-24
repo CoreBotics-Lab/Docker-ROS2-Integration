@@ -102,6 +102,7 @@ RUN apt-get update && apt-get install -y \
                 ros-${ROS_DISTRO}-desktop \
                 ros-${ROS_DISTRO}-rviz2 \
                 "ros-${ROS_DISTRO}-rqt*" \
+                ros-${ROS_DISTRO}-ros-gz \
                 mesa-utils \
                 libgl1 \
                 libgl1-mesa-dri \
