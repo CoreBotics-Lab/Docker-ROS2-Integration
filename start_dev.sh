@@ -1,15 +1,18 @@
 #!/bin/bash
 # ---------------------------------------------------------
-# ROS 2 Jazzy - Dev Environment Launcher (Fully Dynamic)
+# ROS 2 Jazzy - Dev Environment Launcher (Modular Version)
 # ---------------------------------------------------------
 
 # --- CONFIGURATION ---
-# 1. Choose your IDE: "antigravity", "code", or "code-insiders"
-IDE_BINARY="antigravity"
+# Default IDE if no argument is provided (e.g., "antigravity", "code", "code-insiders")
+DEFAULT_IDE="antigravity"
 
-# 2. Your Container Name (from docker-compose.yml)
+# Your Container Name (from docker-compose.yml)
 CONTAINER_NAME="jazzy_dev"
 # ---------------------
+
+# Use the first argument as the IDE binary, or fall back to default
+IDE_BINARY="${1:-$DEFAULT_IDE}"
 
 # 1. Get the directory of this script
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -30,7 +33,7 @@ if [[ "$IDE_BINARY" == "antigravity" ]]; then
     HEX_CODE=$(python3 -c "import json; print(json.dumps({'containerId': '$CONTAINER_NAME'}, separators=(',', ':')).encode().hex())")
     REMOTE_TYPE="dev-container"
 else
-    # VS Code wants Simple format: jazzy_dev
+    # VS Code and others want Simple format: jazzy_dev
     HEX_CODE=$(python3 -c "print('$CONTAINER_NAME'.encode().hex())")
     REMOTE_TYPE="attached-container"
 fi

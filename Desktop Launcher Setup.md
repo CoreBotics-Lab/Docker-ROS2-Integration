@@ -22,13 +22,16 @@ Version=1.0
 Type=Application
 Name=ROS 2 Jazzy
 Comment=Launch ROS 2 Jazzy Development Environment
-Exec=YOUR_PROJECT_PATH/start_dev.sh
+Exec=YOUR_PROJECT_PATH/start_dev.sh antigravity
 Icon=YOUR_PROJECT_PATH/ros2_icon.png
 Terminal=true
 Categories=Development;
 StartupNotify=true
 Path=YOUR_PROJECT_PATH/
 ```
+
+> [!TIP]
+> You can change the IDE by changing the argument at the end of the `Exec` line (e.g., `.../start_dev.sh code` or `.../start_dev.sh code-insiders`).
 
 3. Make the file executable:
    ```bash
@@ -38,12 +41,6 @@ Path=YOUR_PROJECT_PATH/
 ---
 
 ## ⚙️ 3. Configuration
-
-### Switching IDEs
-The `start_dev.sh` script is designed to work with Antigravity, VS Code, or VS Code Insiders. It automatically detects which IDE you are using and applies the correct connection format.
-
-1. Open `start_dev.sh` in the project root.
-2. Locate the `IDE_BINARY` variable at the top and change it to your preferred command (`antigravity`, `code`, or `code-insiders`).
 
 ### Customizing the Container Name
 The script is now **fully dynamic**. If you change the container name in `docker-compose.yml`, you only need to update the `CONTAINER_NAME` variable at the top of `start_dev.sh`. 
