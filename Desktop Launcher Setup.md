@@ -40,24 +40,13 @@ Path=YOUR_PROJECT_PATH/
 ## ⚙️ 3. Configuration
 
 ### Switching IDEs
-The `start_dev.sh` script is designed to work with Antigravity, VS Code, or VS Code Insiders. To switch:
+The `start_dev.sh` script is designed to work with Antigravity, VS Code, or VS Code Insiders. It automatically detects which IDE you are using and applies the correct connection format.
 
 1. Open `start_dev.sh` in the project root.
 2. Locate the `IDE_BINARY` variable at the top and change it to your preferred command (`antigravity`, `code`, or `code-insiders`).
 
 ### Customizing the Container Name
-If you change the container name in `docker-compose.yml`, you must update the hex string in `start_dev.sh`. To find a new hex string for your container, run this command in your terminal:
-
-```bash
-# To find a new hex code for a different container name, run:
-python3 -c "print('{\"containerId\":\"YOUR_CONTAINER_NAME\"}'.encode().hex())"
-
-# Example for 'jazzy_dev':
-python3 -c "print('{\"containerId\":\"jazzy_dev\"}'.encode().hex())"
-# Output: 7b22636f6e7461696e65724964223a226a617a7a795f646576227d
-```
-
-Copy the output and paste it into the `--remote` section of `start_dev.sh`.
+If you change the container name in `docker-compose.yml`, you must update the hex strings in `start_dev.sh`. The script contains examples for both Antigravity (JSON format) and VS Code (Simple format).
 
 ---
 
