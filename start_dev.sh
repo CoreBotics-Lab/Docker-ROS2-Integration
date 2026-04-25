@@ -1,11 +1,14 @@
 #!/bin/bash
 # ---------------------------------------------------------
-# ROS 2 Jazzy - Dev Environment Launcher (Smart IDE Detection)
+# ROS 2 Jazzy - Dev Environment Launcher (Fully Dynamic)
 # ---------------------------------------------------------
 
 # --- CONFIGURATION ---
-# Choose your IDE: "antigravity", "code", or "code-insiders"
-IDE_BINARY="code"
+# 1. Choose your IDE: "antigravity", "code", or "code-insiders"
+IDE_BINARY="antigravity"
+
+# 2. Your Container Name (from docker-compose.yml)
+CONTAINER_NAME="jazzy_dev"
 # ---------------------
 
 # 1. Get the directory of this script
@@ -20,15 +23,15 @@ echo "🚀 Starting Container..."
 cd docker && docker compose up -d
 cd ..
 
-# 3. Determine the correct Hex Format for the IDE
-# Antigravity wants JSON-in-Hex, VS Code wants Simple-Hex
+# 3. Generate the Dynamic Hex Code
+echo "🔧 Generating connection hex for $IDE_BINARY..."
 if [[ "$IDE_BINARY" == "antigravity" ]]; then
-    # To find this hex: python3 -c "print('{\"containerId\":\"jazzy_dev\"}'.encode().hex())"
-    HEX_CODE="7b22636f6e7461696e65724964223a226a617a7a795f646576227d"
+    # Antigravity wants JSON format: {"containerId":"jazzy_dev"}
+    HEX_CODE=$(python3 -c "import json; print(json.dumps({'containerId': '$CONTAINER_NAME'}, separators=(',', ':')).encode().hex())")
     REMOTE_TYPE="dev-container"
 else
-    # To find this hex: python3 -c "print('jazzy_dev'.encode().hex())"
-    HEX_CODE="6a617a7a795f646576"
+    # VS Code wants Simple format: jazzy_dev
+    HEX_CODE=$(python3 -c "print('$CONTAINER_NAME'.encode().hex())")
     REMOTE_TYPE="attached-container"
 fi
 

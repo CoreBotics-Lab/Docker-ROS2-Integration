@@ -46,7 +46,9 @@ The `start_dev.sh` script is designed to work with Antigravity, VS Code, or VS C
 2. Locate the `IDE_BINARY` variable at the top and change it to your preferred command (`antigravity`, `code`, or `code-insiders`).
 
 ### Customizing the Container Name
-If you change the container name in `docker-compose.yml`, you must update the hex strings in `start_dev.sh`. The script contains examples for both Antigravity (JSON format) and VS Code (Simple format).
+The script is now **fully dynamic**. If you change the container name in `docker-compose.yml`, you only need to update the `CONTAINER_NAME` variable at the top of `start_dev.sh`. 
+
+The script will automatically generate the correct hex code for your IDE using Python!
 
 ---
 
