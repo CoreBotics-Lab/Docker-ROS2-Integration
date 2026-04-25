@@ -3,10 +3,11 @@
 # ROS 2 Jazzy - Desktop Icon Installer
 # ---------------------------------------------------------
 
-# 1. Get the absolute path of the project
-PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-ICON_PATH="$PROJECT_PATH/ros2_icon.png"
-LAUNCHER_PATH="$PROJECT_PATH/start_dev.sh"
+# 1. Get the absolute path of the project (one level up from this script)
+LAUNCHER_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_PATH="$( cd "$LAUNCHER_DIR/.." && pwd )"
+ICON_PATH="$LAUNCHER_DIR/ros2_icon.png"
+LAUNCHER_PATH="$LAUNCHER_DIR/start_dev.sh"
 
 echo "🤖 ROS 2 Jazzy - Desktop Setup"
 echo "--------------------------------"

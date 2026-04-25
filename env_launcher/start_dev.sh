@@ -23,8 +23,8 @@ echo "🌐 Enabling X11 access..."
 xhost +local:docker > /dev/null
 
 echo "🚀 Starting Container..."
-cd docker && docker compose up -d
-cd ..
+cd ../docker && docker compose up -d
+cd ../env_launcher
 
 # 3. Generate the Dynamic Hex Code
 echo "🔧 Generating connection hex for $IDE_BINARY..."
