@@ -11,6 +11,12 @@
 # ROS 2 Jazzy Docker Workspace
 This document provides a detailed explanation of the Docker setup for a ROS 2 Jazzy development environment.
 
+## 🚀 One-Click Desktop Launcher
+We have included a professional desktop launcher that automates X11 setup, Docker startup, and IDE connection.
+👉 **[Desktop Launcher Setup](./env_launcher/Desktop%20Launcher%20Setup.md)**
+
+---
+
 ## 📂 Directory Structure
 ```bash
 	
@@ -23,6 +29,11 @@ This document provides a detailed explanation of the Docker setup for a ROS 2 Ja
 		│  	├── entrypoint.sh 				# this file runs as soon as a new session is opened
 		│  	├── README.md 					# Documentation
 		│  	├── setup_vscode_ext.sh 		# VS Code automation script for extensions i use 
+		├── env_launcher/ 					# One-Click Desktop Launcher
+		│  	├── install.sh 					# Interactive launcher installer
+		│  	├── start_dev.sh 				# Main startup script
+		│  	├── ros2_icon.png 				# Launcher icon
+		│  	├── Desktop Launcher Setup.md 	# Launcher documentation
 		├── ros2_ws/ 						# Persistent ROS 2 Workspace
 		│  	└── src/ 						# Source code (C++/Python)
 		│  		└── learning_ros2/ 			# I'd prefer bundling my packages for the projects
