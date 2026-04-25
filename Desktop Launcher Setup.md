@@ -10,8 +10,20 @@ If you are using a fork of VS Code (like Antigravity) that uses Open VSX, you ma
 
 ---
 
-## 🚀 2. Creating the Desktop Icon
-Since the `.desktop` file is local to your machine, you should create it manually on your desktop.
+## 🚀 2. Automatic Setup (Recommended)
+The easiest way to set up your desktop icon is to run the interactive installer. It will auto-detect your IDE and create the icon for you with all paths correctly configured.
+
+1. Open your terminal in the project root.
+2. Run the installer:
+   ```bash
+   ./install.sh
+   ```
+3. Follow the on-screen instructions to select your preferred IDE.
+
+---
+
+## 🛠️ 3. Manual Setup (Optional)
+If you prefer to set up the icon manually or want to customize the paths yourself:
 
 1. Create a new file on your desktop named `ROS2_Jazzy.desktop`.
 2. Paste the following code into it (replace `YOUR_PROJECT_PATH` with the actual path to this folder):
@@ -40,7 +52,7 @@ Path=YOUR_PROJECT_PATH/
 
 ---
 
-## ⚙️ 3. Configuration
+## ⚙️ 4. Configuration
 
 ### Customizing the Container Name
 The script is now **fully dynamic**. If you change the container name in `docker-compose.yml`, you only need to update the `CONTAINER_NAME` variable at the top of `start_dev.sh`. 
@@ -50,5 +62,6 @@ The script will automatically generate the correct hex code for your IDE using P
 ---
 
 ## 📄 File Overview
+*   `install.sh`: Interactive installer for easy setup.
 *   `start_dev.sh`: The main engine that starts Docker and launches the IDE.
 *   `ros2_icon.png`: The official icon for the desktop launcher.
