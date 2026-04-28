@@ -29,7 +29,7 @@ We have included a professional desktop launcher that automates X11 setup, Docke
 		│  	├── entrypoint.sh 				# this file runs as soon as a new session is opened
 		│  	├── README.md 					# Documentation
 		│  	├── setup_vscode_ext.sh 		# VS Code automation script for extensions i use 
-		├── Install_scripts/ 					# One-Click Desktop Launcher
+		├── Install_scripts/ 				# Environment Setup & Launcher Scripts
 		│  	├── install.sh 					# Interactive launcher installer
 		│  	├── setup_nvidia_toolkit.sh 	# Automated NVIDIA host setup
 		│  	├── start_dev.sh 				# Main startup script

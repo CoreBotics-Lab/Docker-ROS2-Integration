@@ -52,6 +52,7 @@ The script is now **fully dynamic**. If you change the container name in `docker
 ---
 
 ## 📄 File Overview (Inside `Install_scripts/`)
+*   `setup_nvidia_toolkit.sh`: Automated host setup for the NVIDIA Container Toolkit.
 *   `install.sh`: Interactive installer for easy setup.
 *   `start_dev.sh`: The main engine that starts Docker and launches the IDE.
 *   `ros2_icon.png`: The official icon for the desktop launcher.
