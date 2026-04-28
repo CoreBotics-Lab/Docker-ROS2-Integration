@@ -13,7 +13,7 @@ This document provides a detailed explanation of the Docker setup for a ROS 2 Ja
 
 ## 🚀 One-Click Desktop Launcher
 We have included a professional desktop launcher that automates X11 setup, Docker startup, and IDE connection.
-👉 **[Desktop Launcher Setup](./env_launcher/Desktop%20Launcher%20Setup.md)**
+👉 **[Desktop Launcher Setup](./Install_scripts/Desktop%20Launcher%20Setup.md)**
 
 ---
 
@@ -29,8 +29,9 @@ We have included a professional desktop launcher that automates X11 setup, Docke
 		│  	├── entrypoint.sh 				# this file runs as soon as a new session is opened
 		│  	├── README.md 					# Documentation
 		│  	├── setup_vscode_ext.sh 		# VS Code automation script for extensions i use 
-		├── env_launcher/ 					# One-Click Desktop Launcher
+		├── Install_scripts/ 					# One-Click Desktop Launcher
 		│  	├── install.sh 					# Interactive launcher installer
+		│  	├── setup_nvidia_toolkit.sh 	# Automated NVIDIA host setup
 		│  	├── start_dev.sh 				# Main startup script
 		│  	├── ros2_icon.png 				# Launcher icon
 		│  	├── Desktop Launcher Setup.md 	# Launcher documentation
@@ -45,6 +46,14 @@ We have included a professional desktop launcher that automates X11 setup, Docke
 > Note: only if you are going to build Desktop version of ROS2 in docker container.
 
 Before building the container, your **Ubuntu Host** must be configured to share the GPU with Docker. Run these commands on your **Host PC** terminal (not inside a container).
+
+> **Automated Setup:** You can simply run the provided script to automatically perform all the host setup steps below:
+> ```bash
+> chmod +x Install_scripts/setup_nvidia_toolkit.sh
+> ./Install_scripts/setup_nvidia_toolkit.sh
+> ```
+> 
+> *Alternatively, follow the manual steps below.*
 
 ### 1. Install NVIDIA Container Toolkit
 ```bash

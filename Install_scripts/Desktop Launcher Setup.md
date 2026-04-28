@@ -13,7 +13,7 @@ If you are using a fork of VS Code (like Antigravity) that uses Open VSX, you ma
 ## 🚀 2. Automatic Setup (Recommended)
 The easiest way to set up your desktop icon is to run the interactive installer. It will auto-detect your IDE and create the icon for you with all paths correctly configured.
 
-1. Open your terminal in the **`env_launcher/`** folder.
+1. Open your terminal in the **`Install_scripts/`** folder.
 2. Run the installer:
    ```bash
    ./install.sh
@@ -34,8 +34,8 @@ Version=1.0
 Type=Application
 Name=ROS 2 Jazzy
 Comment=Launch ROS 2 Jazzy Development Environment
-Exec=YOUR_PROJECT_PATH/env_launcher/start_dev.sh antigravity
-Icon=YOUR_PROJECT_PATH/env_launcher/ros2_icon.png
+Exec=YOUR_PROJECT_PATH/Install_scripts/start_dev.sh antigravity
+Icon=YOUR_PROJECT_PATH/Install_scripts/ros2_icon.png
 Terminal=true
 Categories=Development;
 StartupNotify=true
@@ -51,7 +51,7 @@ The script is now **fully dynamic**. If you change the container name in `docker
 
 ---
 
-## 📄 File Overview (Inside `env_launcher/`)
+## 📄 File Overview (Inside `Install_scripts/`)
 *   `install.sh`: Interactive installer for easy setup.
 *   `start_dev.sh`: The main engine that starts Docker and launches the IDE.
 *   `ros2_icon.png`: The official icon for the desktop launcher.
