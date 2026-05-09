@@ -11,18 +11,22 @@ _build_completions()
     fi
 
     # 2. Get the list of packages 
-    # -maxdepth 5 allows for src/category/sub_category/pkg_name
     # We find the package.xml and get the name of the folder it sits in
     local pkgs=$(find "$ws_path" -maxdepth 5 -name "package.xml" | xargs -I {} bash -c 'basename $(dirname {})')
     
     # 3. Add special arguments
-    local special_args="all clean"
+    local special_args="all clean debug"
     local opts="$pkgs $special_args"
     
     # 4. Generate the completion suggestions
     COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
 }
 
-# Register the function for the 'build' and 'clean' alias
+# Register the function for the 'build', 'clean', and 'debug' commands
 complete -F _build_completions build
 complete -F _build_completions clean
+complete -F _build_completions debug
+
+# Also register for the script path directly
+complete -F _build_completions /root/build.sh
+complete -F _build_completions ./build.sh
