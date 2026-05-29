@@ -37,7 +37,13 @@ RUN apt-get update && apt-get install -y \
                 build-essential \
                 cmake \
                 ros-${ROS_DISTRO}-demo-nodes-py \
-                && rm -rf /var/lib/apt/lists/*		  
+                && rm -rf /var/lib/apt/lists/*
+                		  
+# --- MODULAR DEPENDENCY SECTION ---
+# Mount the script temporarily to execute it, avoiding any file copying or cleanup layers
+RUN --mount=type=bind,source=dependencies.sh,target=/tmp/dependencies.sh \
+    bash /tmp/dependencies.sh
+# ----------------------------------
 
 # 2. Update rosdep database
 # This downloads the latest list of software package names for Jazzy.
