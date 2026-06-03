@@ -17,8 +17,7 @@ services:
           devices:
             - driver: nvidia
               count: all
-              # Crucial: 'utility' gives Gazebo access to structural hardware system driver queries
-              capabilities: [ gpu, utility ]
+              capabilities: [ gpu ]
 
     environment:
       - DISPLAY=${DISPLAY}
@@ -31,7 +30,7 @@ services:
       # Force ROS 2 logging engines to maintain full color output inside the container
       - RCUTILS_COLORIZED_OUTPUT=1
       # Pass the authentication file path
-      - XAUTHORITY=/root/.Xauthority
+      # - XAUTHORITY=/root/.Xauthority
 
     volumes:
       # Use ../ to go up one level from the 'docker' folder to 'ros2_ws'
@@ -39,7 +38,7 @@ services:
       # The Bridge for GUI data
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       # Pass the Xauth file directly so NVIDIA drivers can validate the display link
-      - ~/.Xauthority:/root/.Xauthority:ro
+      # - ~/.Xauthority:/root/.Xauthority:ro
       # Add this to allow access to the direct rendering manager
       - /dev/dri:/dev/dri:rw
 
