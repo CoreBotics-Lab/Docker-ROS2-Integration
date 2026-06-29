@@ -113,7 +113,7 @@ docker compose exec -it jazzy_dev bash
 - use `exit` command on docker terminal to exit the docker container shell.
 - To stop the docker running in background, run the below command from the directory where your docker-compose.yml file is located.
 ```bash
-	docker compose stop
+docker compose stop
 ```
 
 ## ROS2 useful commands
