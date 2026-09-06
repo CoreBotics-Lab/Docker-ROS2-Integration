@@ -8,19 +8,20 @@ apt-get update
 
 # 2. Main ROS 2 Simulation and Control Packages
 apt-get install -y \
-    ros-jazzy-ros2-control \
-    ros-jazzy-ros2-controllers \
-    ros-jazzy-gz-ros2-control \
-    ros-jazzy-joint-state-publisher-gui \
-    ros-jazzy-xacro \
-    ros-jazzy-rosidl-default-generators \
-    ros-jazzy-rosidl-default-runtime \
-    ros-jazzy-ros-gz-sim \
-    ros-jazzy-ros-gz-bridge \
-    ros-jazzy-turtlesim \
-    ros-jazzy-tf-transformations \
-    ros-jazzy-rviz-imu-plugin \
-    ros-jazzy-ament-cmake-python
+    ros-lyrical-ros2-control \
+    ros-lyrical-ros2-controllers \
+    ros-lyrical-gz-ros2-control \
+    ros-lyrical-joint-state-publisher-gui \
+    ros-lyrical-xacro \
+    ros-lyrical-rosidl-default-generators \
+    ros-lyrical-rosidl-default-runtime \
+    ros-lyrical-ros-gz-sim \
+    ros-lyrical-ros-gz-bridge \
+    ros-lyrical-gz-ros2-control \
+    ros-lyrical-turtlesim \
+    ros-lyrical-tf-transformations \
+    ros-lyrical-rviz-imu-plugin \
+    ros-lyrical-ament-cmake-python
 
 # 3. Clean up apt cache to keep the Docker image lightweight
 rm -rf /var/lib/apt/lists/*

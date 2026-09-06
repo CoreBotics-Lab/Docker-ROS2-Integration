@@ -11,7 +11,7 @@ echo "🔧 Setting script permissions..."
 chmod +x /root/*.sh 2>/dev/null || true
 
 # 3. Final Check
-# ${ROS_DISTRO^} capitalizes the first letter (e.g., Jazzy)
+# ${ROS_DISTRO^} capitalizes the first letter (e.g., Lyrical)
 echo "🚀 ROS 2 ${ROS_DISTRO^} Container Ready!"
 
 # 4. Hand over to the command (usually 'bash')

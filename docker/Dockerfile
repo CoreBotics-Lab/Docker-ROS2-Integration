@@ -1,7 +1,7 @@
 # 0. Global Scope Argument
 # This allows us to change the version in one place (top) and have it
 # apply to every stage below.
-ARG ROS_DISTRO=jazzy		  
+ARG ROS_DISTRO=lyrical		  
 
 # --- STAGE 1: THE PERMANENT BASE (Core Logic & Workspace Setup) ---
 
@@ -46,7 +46,7 @@ RUN --mount=type=bind,source=dependencies.sh,target=/tmp/dependencies.sh \
 # ----------------------------------
 
 # 2. Update rosdep database
-# This downloads the latest list of software package names for Jazzy.
+# This downloads the latest list of software package names for Lyrical.
 RUN rosdep update --rosdistro ${ROS_DISTRO}		  
 
 # 3. Create the workspace structure
@@ -97,26 +97,26 @@ FROM base AS desktop
 ENV QT_QPA_PLATFORM=xcb
 ENV __GLX_VENDOR_LIBRARY_NAME=nvidia
 ENV NVIDIA_VISIBLE_DEVICES=all
-ENV NVIDIA_DRIVER_CAPABILITIES=all	  
+ENV NVIDIA_DRIVER_CAPABILITIES=all
+ENV OGRE_RTT_MODE=Copy
+ENV __GL_THREADED_OPTIMIZATIONS=0
+ENV __GL_SYNC_TO_VBLANK=1
+ENV QT_ENABLE_HIGHDPI_SCALING=0
+ENV QT_AUTO_SCREEN_SCALE_FACTOR=0
+ENV QT_SCALE_FACTOR=1
 
 # 7. Install GUI "Furniture"
-# ros-desktop: Includes basic visualization tools.
-# rviz2: 3D visualization.
-# mesa-utils: run 'glxinfo | grep "OpenGL vendor"' inside docker container to check if GPU is working.
-# libgl1/mesa-dri: Basic graphics libraries for Linux.
 RUN apt-get update && apt-get install -y \
                 ros-${ROS_DISTRO}-desktop \
                 ros-${ROS_DISTRO}-rviz2 \
-                "ros-${ROS_DISTRO}-rqt*" \
                 ros-${ROS_DISTRO}-ros-gz \
                 mesa-utils \
                 libgl1 \
                 libgl1-mesa-dri \
                 && rm -rf /var/lib/apt/lists/*		  
 
-# 8. Create a private runtime directory
-# Fixes "XDG_RUNTIME_DIR not set" errors when running GUI apps as root.
-RUN mkdir -p /tmp/runtime-root && chmod 0700 /tmp/runtime-root
+# 8. Create private runtime directory and rviz2 settings directory
+RUN mkdir -p /tmp/runtime-root /root/.rviz2 && chmod 0700 /tmp/runtime-root
 ENV XDG_RUNTIME_DIR=/tmp/runtime-root
 # Re-confirm 'bash' as the default shell for the desktop stage.
 CMD ["bash"]

@@ -1,11 +1,11 @@
 #!/bin/bash
 # ---------------------------------------------------------
-# ROS 2 Jazzy - Dev Environment Launcher (Modular Version)
+# ROS 2 Lyrical - Dev Environment Launcher (Modular Version)
 # ---------------------------------------------------------
 
 # --- CONFIGURATION ---
 DEFAULT_IDE="antigravity"
-CONTAINER_NAME="jazzy_dev"
+CONTAINER_NAME="lyrical_dev"
 # ---------------------
 
 IDE_BINARY="${1:-$DEFAULT_IDE}"

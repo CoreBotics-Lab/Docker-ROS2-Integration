@@ -1,13 +1,13 @@
 services:
-  ros2_jazzy:
+  ros2_lyrical:
     build:
       context: .
       # target: base  # <--- THIS IS FOR ONLY BASE
       target: desktop # <--- THIS IS FOR DESKTOP
       args:
-        # This is your single point of control for Jazzy vs Kilted
-        - ROS_DISTRO=${ROS_DISTRO:-jazzy}
-    container_name: ${ROS_DISTRO:-jazzy}_dev
+        # Single point of control for ROS_DISTRO (default: lyrical)
+        - ROS_DISTRO=${ROS_DISTRO:-lyrical}
+    container_name: ${ROS_DISTRO:-lyrical}_dev
     network_mode: host
     ipc: host
 
@@ -17,28 +17,34 @@ services:
           devices:
             - driver: nvidia
               count: all
-              capabilities: [ gpu ]
+              capabilities: [ gpu, graphics, utility, display ]
 
     environment:
       - DISPLAY=${DISPLAY}
-      - QT_X11_NO_MITSHM=1
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
       - __NV_PRIME_RENDER_OFFLOAD=1
       - __GLX_VENDOR_LIBRARY_NAME=nvidia
+      - LIBGL_ALWAYS_SOFTWARE=0
+      - LIBGL_ALWAYS_INDIRECT=0
+      - OGRE_RTT_MODE=Copy
+      - __GL_THREADED_OPTIMIZATIONS=0
+      - __GL_SYNC_TO_VBLANK=1
+      - QT_ENABLE_HIGHDPI_SCALING=0
+      - QT_AUTO_SCREEN_SCALE_FACTOR=0
+      - QT_SCALE_FACTOR=1
       - XDG_RUNTIME_DIR=/tmp/runtime-root
       # Force ROS 2 logging engines to maintain full color output inside the container
       - RCUTILS_COLORIZED_OUTPUT=1
-      # Pass the authentication file path
-      # - XAUTHORITY=/root/.Xauthority
 
     volumes:
       # Use ../ to go up one level from the 'docker' folder to 'ros2_ws'
       - ../ros2_ws/:/root/ros2_ws/
       # The Bridge for GUI data
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      # Pass the Xauth file directly so NVIDIA drivers can validate the display link
-      # - ~/.Xauthority:/root/.Xauthority:ro
+      # Pass Wayland socket if present on host
+      - /run/user/1000:/run/user/1000:rw
       # Add this to allow access to the direct rendering manager
       - /dev/dri:/dev/dri:rw
 

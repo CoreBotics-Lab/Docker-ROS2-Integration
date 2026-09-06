@@ -1,6 +1,6 @@
 #!/bin/bash
 # ---------------------------------------------------------
-# ROS 2 Jazzy - Desktop Icon Installer
+# ROS 2 Lyrical - Desktop Icon Installer
 # ---------------------------------------------------------
 
 # 1. Get the absolute path of the project (one level up from this script)
@@ -9,7 +9,7 @@ PROJECT_PATH="$( cd "$LAUNCHER_DIR/.." && pwd )"
 ICON_PATH="$LAUNCHER_DIR/ros2_icon.png"
 LAUNCHER_PATH="$LAUNCHER_DIR/start_dev.sh"
 
-echo "🤖 ROS 2 Jazzy - Desktop Setup"
+echo "🤖 ROS 2 Lyrical - Desktop Setup"
 echo "--------------------------------"
 
 # 2. Detect IDEs
@@ -41,14 +41,14 @@ SELECTED_IDE=${IDEs[$((CHOICE-1))]}
 echo "✅ Selected: $SELECTED_IDE"
 
 # 4. Create the .desktop file
-DESKTOP_FILE="$HOME/Desktop/ROS2_Jazzy.desktop"
+DESKTOP_FILE="$HOME/Desktop/ROS2_Lyrical.desktop"
 
 cat <<EOF > "$DESKTOP_FILE"
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=ROS 2 Jazzy
-Comment=Launch ROS 2 Jazzy Development Environment
+Name=ROS 2 Lyrical
+Comment=Launch ROS 2 Lyrical Development Environment
 Exec="$LAUNCHER_PATH" $SELECTED_IDE
 Icon=$ICON_PATH
 Terminal=false
@@ -63,5 +63,6 @@ chmod +x "$LAUNCHER_PATH"
 
 echo "--------------------------------"
 echo "🎉 SUCCESS!"
-echo "A ROS 2 Jazzy icon has been created on your Desktop."
+echo "A ROS 2 Lyrical icon has been created on your Desktop."
 echo "You can now use it to launch your environment with $SELECTED_IDE."
+

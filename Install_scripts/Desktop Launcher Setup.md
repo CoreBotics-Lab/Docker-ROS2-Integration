@@ -1,4 +1,4 @@
-# 🖥️ ROS 2 Jazzy Desktop Launcher Setup
+# 🖥️ ROS 2 Lyrical Desktop Launcher Setup
 
 This guide explains how to set up a professional "One-Click" desktop launcher for this ROS 2 development environment.
 
@@ -25,15 +25,15 @@ The easiest way to set up your desktop icon is to run the interactive installer.
 ## 🛠️ 3. Manual Setup (Optional)
 If you prefer to set up the icon manually:
 
-1. Create a new file on your desktop named `ROS2_Jazzy.desktop`.
+1. Create a new file on your desktop named `ROS2_Lyrical.desktop`.
 2. Paste the following code into it (replace `YOUR_PROJECT_PATH` with the actual path to this folder):
 
 ```ini
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=ROS 2 Jazzy
-Comment=Launch ROS 2 Jazzy Development Environment
+Name=ROS 2 Lyrical
+Comment=Launch ROS 2 Lyrical Development Environment
 Exec="YOUR_PROJECT_PATH/Install_scripts/start_dev.sh" antigravity
 Icon=YOUR_PROJECT_PATH/Install_scripts/ros2_icon.png
 Terminal=false

@@ -1,4 +1,4 @@
-![ROS2](https://img.shields.io/badge/ROS2-Jazzy-blue)
+![ROS2](https://img.shields.io/badge/ROS2-Lyrical-blue)
 ![Docker](https://img.shields.io/badge/Docker-Enabled-blue?logo=docker)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-24.04-orange?logo=ubuntu)
 
@@ -8,8 +8,8 @@
 > 
 > `Instant Recovery:`  `docker compose down && docker compose up -d` to fix a corrupted environment.
 
-# ROS 2 Jazzy Docker Workspace
-This document provides a detailed explanation of the Docker setup for a ROS 2 Jazzy development environment.
+# ROS 2 Lyrical Docker Workspace
+This document provides a detailed explanation of the Docker setup for a ROS 2 Lyrical development environment.
 
 ## 🚀 One-Click Desktop Launcher
 We have included a professional desktop launcher that automates X11 setup, Docker startup, and IDE connection.
@@ -20,14 +20,13 @@ We have included a professional desktop launcher that automates X11 setup, Docke
 ## 📂 Directory Structure
 ```bash
 	
-	├── ros2_jazzy/
+	├── ros2_lyrical/
 		├── docker/
 		│  	├── build_completion.sh			# Tab auto-completion for build and clean ROS2 ws	
-		│  	├── build.sh					# script includesbuild and clean for ROS2 ws
+		│  	├── build.sh					# script includes build and clean for ROS2 ws
 		│  	├── docker-compose.yml 			# Hardware & GPU mapping
 		│  	├── Dockerfile 					# Multi-stage: Base & Desktop
 		│  	├── entrypoint.sh 				# this file runs as soon as a new session is opened
-		│  	├── README.md 					# Documentation
 		│  	├── setup_vscode_ext.sh 		# VS Code automation script for extensions i use 
 		├── Install_scripts/ 				# Environment Setup & Launcher Scripts
 		│  	├── install.sh 					# Interactive launcher installer
@@ -37,11 +36,9 @@ We have included a professional desktop launcher that automates X11 setup, Docke
 		│  	├── Desktop Launcher Setup.md 	# Launcher documentation
 		├── ros2_ws/ 						# Persistent ROS 2 Workspace
 		│  	└── src/ 						# Source code (C++/Python)
-		│  		└── learning_ros2/ 			# I'd prefer bundling my packages for the projects
-		│  			└── ros2_pkg/ 
 		
 ```
-## Host Machine Setup (NVIDIA). 
+## Host Machine Setup (NVIDIA) 
 
 > Note: only if you are going to build Desktop version of ROS2 in docker container.
 
@@ -59,8 +56,8 @@ Before building the container, your **Ubuntu Host** must be configured to share 
 ```bash
 
 # 1. Add the package repositories
-curl  -fsSL [https://nvidia.github.io/libnvidia-container/gpgkey](https://nvidia.github.io/libnvidia-container/gpgkey) | sudo  gpg  --dearmor  -o  /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
-curl  -s  -L [https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list](https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list) | \
+curl  -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo  gpg  --dearmor  -o  /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+curl  -s  -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
 sed  's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
 sudo  tee  /etc/apt/sources.list.d/nvidia-container-toolkit.list
 
@@ -90,8 +87,8 @@ echo "xhost +local:docker > /dev/null" >> ~/.bashrc
 Now, Let's start setting up the container
 - Navigate to the docker directory:
 ```bash
-# In my case, docker-compose.yml file is present in ~/ros2_jazzy/docker/
-cd $HOME/ros2_jazzy/docker/
+# In my case, docker-compose.yml file is present in ~/ros2_lyrical/docker/
+cd "$HOME/Corebotics Lab/ros2_lyrical/docker/"
 
 # run 'docker compose up' to build the container 
 docker compose up -d --build
@@ -100,14 +97,14 @@ docker compose up -d --build
 - once the container is up and running in the background, To start running your ROS 2 nodes, you need to open a shell inside the running container:
 ```bash
 # docker compose exec -it <NAME> bash
-docker compose exec -it jazzy_dev bash
+docker compose exec -it lyrical_dev bash
 ```
 
 > Note: To get your container's `NAME`, change directory to where the docker-compose.yml file is and run `docker compose ps` 
 > ```bash 
 > output:
-> NAME        IMAGE               COMMAND                  SERVICE      CREATED        STATUS         PORTS
->jazzy_dev   docker-ros2_jazzy   "/root/entrypoint.sh…"   ros2_jazzy   13 hours ago   Up 6 minutes  
+> NAME          IMAGE                 COMMAND                  SERVICE        CREATED        STATUS         PORTS
+> lyrical_dev   docker-ros2_lyrical   "/root/entrypoint.sh…"   ros2_lyrical   13 hours ago   Up 6 minutes  
 > ```
 
 - use `exit` command on docker terminal to exit the docker container shell.
@@ -142,7 +139,7 @@ clean
 
 ## Verifying the ROS2 Installation (Talker/Listener)
 
-To verify that your ROS 2 Jazzy environment is correctly configured, you can run the built-in demo nodes.
+To verify that your ROS 2 Lyrical environment is correctly configured, you can run the built-in demo nodes.
 
 1.  **Start the Talker:**    
     In your first container terminal, run the following command to start publishing messages:    
@@ -153,8 +150,9 @@ ros2 run demo_nodes_py talker
     Open a second terminal on your host machine, enter the container, and run the listener to receive those messages:    
 ```bash
 # Open new terminal on host
-docker exec -it jazzy_dev bash
+docker exec -it lyrical_dev bash
 
 # Run listener inside container
 ros2 run demo_nodes_py listener
 ```
+
