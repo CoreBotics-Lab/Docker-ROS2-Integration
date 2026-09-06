@@ -34,12 +34,25 @@ echo "-----------------------------------------------"
 
 # 3. YOUR BUNDLE
 EXTENSIONS=(
+    # Python
     "ms-python.python"
-    # "morningfrog.urdf-visualizer"
-    "Ranch-Hand-Robotics.rde-pack"
-    "ms-vscode.cpptools-extension-pack"
-    "actboy168.tasks"
+    "meta.pyrefly"
+
+    # C/C++ and CMake
     "llvm-vs-code-extensions.vscode-clangd"
+    "ms-vscode.cpptools"
+    "ms-vscode.cmake-tools"
+    "vadimcn.vscode-lldb"
+
+    # ROS 2 & Robotics
+    "ranch-hand-robotics.rde-pack"
+    "morningfrog.urdf-visualizer"
+    "kodorobotics.launchmap"
+    "kamathsblog.pgm-editor"
+
+    # Workflow & Utilities
+    "actboy168.tasks"
+    "adpyke.codesnap"
 )
 
 # 4. INSTALLATION
